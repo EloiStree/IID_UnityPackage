@@ -1,0 +1,23 @@
+
+{                                                                                
+  "name": "be.eloistree.iidutility",                              
+  "displayName": "IID Utility",                        
+  "version": "0.0.1",                         
+  "unity": "2018.1",                             
+  "unityRelease": "",                             
+  "description": "Tools to work with IID value. (IID: Index, Integer Date)",                         
+  "keywords": ["Script","Tool"],                       
+  "dependencies":{},     
+  "relatedPackages":{},     
+  "samples" : [],     
+  "author" : {
+"name":"",
+"mail":"",
+"url":""},     
+  "repository":{
+"type":"Git",
+"url":"https://github.com/EloiStree/2024_06_30_IIDUnityUtility",
+"footprint":"",
+"revision":""},     
+  "category": "Script"                   
+} 
