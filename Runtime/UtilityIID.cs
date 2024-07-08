@@ -1,4 +1,7 @@
-﻿namespace IIDToolbox
+﻿using IIDToolbox;
+using System;
+
+namespace IIDToolbox
 {
     [System.Serializable]
     public static partial class UtilityIID {
@@ -46,7 +49,139 @@
             rawDateTimeSent = ((ulong)typebyte * (ulong)DIVIDER_TO_TYPE) + (ulong)timeinMicroSeconds;
 
         }
+
+        public static void CreateEmpty(out I_IntegerDateWithType id)
+        {
+            id = new REF_ID();
+        }
+
+        public static void CreateEmpty(out I_IndexIntegerDateWithType iid)
+        {
+            iid = new REF_IDD();
+        }
+
+        public static void CreateStructFrom(I_IntegerDateWithType source, out STRUCT_IID_INTEGER_DATE created)
+        {
+            created = new STRUCT_IID_INTEGER_DATE();
+            source.GetTimeType(out created.m_dateType);
+            source.GetValue(out created.m_integerValue.m_integerValue);
+            created.m_microSeconds1970.SetWithTick(source.GetTick());
+            
+
+        }
+        public static void CreateStructFrom(I_IndexIntegerDateWithType source, out STRUCT_IID_UNITY_DATA created)
+        {
+            created = new STRUCT_IID_UNITY_DATA();
+            source.GetTimeType(out created.m_dateType);
+            source.GetValue(out created.m_integerValue.m_integerValue);
+            source.GetIndex(out created.m_claimIndex.m_claimIndex);
+            created.m_microSeconds1970.SetWithTick(source.GetTick());
+        }
+    }
+}
+
+
+[System.Serializable]
+public class REF_ID: I_IntegerDateWithType
+{
+    public STRUCT_IID_INTEGER_DATE m_value;
+
+   
+
+    public long GetTick()
+    {
+        return m_value.m_microSeconds1970.GetTick();
+    }
+
+    public void GetTimeType(out E_IID_DATE_TYPE type)
+    {
+        type = m_value.m_dateType;
     }
 
 
+    public void GetType(out E_IID_DATE_TYPE dateType)
+    {
+        dateType = m_value.m_dateType;
+    }
+    public void SetType(E_IID_DATE_TYPE dateType)
+    {
+         m_value.m_dateType= dateType;
+    }
+    public void GetValue(out int value)
+    {
+        value = m_value.m_integerValue.m_integerValue;
+    }
+
+    public void SetIndex(int index)
+    {
+        m_value.m_integerValue.m_integerValue = index;
+    }
+
+    public void SetTimeType(E_IID_DATE_TYPE type, long microseconds)
+    {
+
+        m_value.m_dateType = type;
+        m_value.m_microSeconds1970.SetWithTick(microseconds * 10);
+    }
+
+  
+
+    public void SetValue(int value)
+    {
+        m_value.m_integerValue.m_integerValue = value;
+    }
+
+    public E_IID_DATE_TYPE GetTimeType()
+    {
+        return m_value.m_dateType;
+    }
 }
+[System.Serializable]
+public class REF_IDD: I_IndexIntegerDateWithType
+{
+    public STRUCT_IID_UNITY_DATA m_value;
+
+    public void GetIndex(out int index)
+    {
+        index= m_value.m_claimIndex.m_claimIndex;
+    }
+
+    public long GetTick()
+    {
+        return m_value.m_microSeconds1970.GetTick();
+    }
+
+    public void GetTimeType(out E_IID_DATE_TYPE type)
+    {
+        type = m_value.m_dateType;
+    }
+
+    public E_IID_DATE_TYPE GetTimeType()
+    {
+        return m_value.m_dateType;
+    }
+
+    public void GetValue(out int value)
+    {
+        value = m_value.m_integerValue.m_integerValue;
+    }
+
+    public void SetIndex(int index)
+    {
+        m_value.m_integerValue.m_integerValue = index;
+    }
+
+    public void SetTimeType(E_IID_DATE_TYPE type, long microseconds)
+    {
+
+        m_value.m_dateType = type;
+        m_value.m_microSeconds1970.SetWithTick(microseconds*10);
+    }
+
+    public void SetValue(int value)
+    {
+        m_value.m_integerValue.m_integerValue = value;
+    }
+}
+
+

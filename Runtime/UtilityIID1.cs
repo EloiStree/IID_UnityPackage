@@ -12,7 +12,7 @@
         {
             to.m_integerValue.m_integerValue = value.m_integerValue;
             to.m_microSeconds1970.m_microSeconds = microSeconds.m_microSeconds1970.m_microSeconds + offest.m_microSecondsOffsetLocal2NTP.m_microSeconds;
-            GetDateTypeFromUlong((ulong)microSeconds.m_microSeconds1970.m_microSeconds, out to.m_timeType, out to.m_microSeconds1970.m_microSeconds);
+            GetDateTypeFromUlong((ulong)microSeconds.m_microSeconds1970.m_microSeconds, out to.m_dateType, out to.m_microSeconds1970.m_microSeconds);
 
         }
 
@@ -32,13 +32,13 @@
         public static void Parse(STRUCT_IID_RAW_DATA from, out STRUCT_IID_INTEGER_DATE to)
         {
             to.m_integerValue.m_integerValue = from.m_integerValue;
-            GetDateTypeFromUlong(from.m_rawUlongDateAndType, out to.m_timeType, out to.m_microSeconds1970.m_microSeconds);
+            GetDateTypeFromUlong(from.m_rawUlongDateAndType, out to.m_dateType, out to.m_microSeconds1970.m_microSeconds);
 
         }
         public static void Parse(STRUCT_IID_INTEGER_DATE from,  out STRUCT_IID_INTEGER_VALUE value, out E_IID_DATE_TYPE date, out STRUCT_IID_MICROSECONDS1970 timestamp)
         {
             value.m_integerValue = from.m_integerValue.m_integerValue;
-            date = from.m_timeType;
+            date = from.m_dateType;
             timestamp.m_microSeconds1970.m_microSeconds = from.m_microSeconds1970.m_microSeconds;
         }
     }
