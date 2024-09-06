@@ -1,7 +1,7 @@
 
 {                                                                   
-            "name": "be.eloistree.iidutilityEditor",          
-    "references": ["be.eloistree.iidutility"
+            "name": "be.elab.iidutilityEditor",          
+    "references": ["be.elab.iidutility"
 ],                                                              
     "optionalUnityReferences": [],                                  
     "includePlatforms": [                                           
